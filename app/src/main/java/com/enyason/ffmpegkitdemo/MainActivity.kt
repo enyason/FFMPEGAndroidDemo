@@ -1,13 +1,10 @@
 package com.enyason.ffmpegkitdemo
 
 import android.Manifest
-import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
 import androidx.activity.result.ActivityResultCallback
@@ -17,11 +14,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.arthenica.ffmpegkit.FFmpegKit
-import com.arthenica.ffmpegkit.FFmpegSession
-import com.arthenica.ffmpegkit.FFmpegSessionCompleteCallback
 import com.arthenica.ffmpegkit.ReturnCode
 import java.io.File
-import java.io.FileInputStream
 import kotlin.random.Random
 
 
@@ -124,6 +118,5 @@ class MainActivity : AppCompatActivity() {
         const val TAG = "FFMPEG_TAG"
         const val PERMISSION_CODE = 1
         val PERMISSIONS_ALL = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
     }
 }

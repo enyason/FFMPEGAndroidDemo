@@ -13,22 +13,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 
-
-fun Uri?.getAbsoluteFilePath(context: Context): String? {
-    this ?: return null
-    val docFile = DocumentFile.fromSingleUri(context,this)
-    return docFile?.uri?.path
-//    return context.contentResolver.query(this, null, null, null, null)
-//        ?.use {
-//            val columnIndex = it.getColumnIndex(MediaStore.Images.Media.DATA)
-//            if (it.moveToFirst()) it.getString(columnIndex)
-//            else null
-//        }
-}
-
-
 object FileHelper {
-
 
     fun getRealPathFromURI(uri: Uri, context: Context): String? {
         val returnCursor = context.contentResolver.query(uri, null, null, null, null)
@@ -65,41 +50,4 @@ object FileHelper {
         returnCursor.close()
         return file.path
     }
-
-
-    fun getStoragePath(directoryName: String): String {
-
-        var file: File? = null
-
-        val mainPath = File.separator + "VideoConverter" + File.separator + directoryName
-
-        val sdPath = "/storage/emulated/0/"
-
-        if (isAboveQ()) {
-            file = File(sdPath + Environment.DIRECTORY_DOWNLOADS + mainPath)
-
-            if (!file.exists()) {
-                file.mkdirs()
-            } else {
-                file = File(
-                    Environment.getExternalStorageState(),
-                    File.separator + Environment.DIRECTORY_DOWNLOADS + mainPath
-                )
-
-                if (!file.exists()) {
-                    file.mkdirs()
-                }
-
-            }
-        }
-
-
-        return file?.absolutePath ?: sdPath
-
-    }
-
-    fun isAboveQ(): Boolean {
-        return SDK_INT >= Build.VERSION_CODES.Q
-    }
-
 }
